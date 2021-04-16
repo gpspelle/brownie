@@ -7,6 +7,7 @@
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
     "cookie-parser": "^1.4.5",
+    "env-cmd": "^10.1.0",
     "express": "^4.17.1",
     "express-session": "^1.17.1",
     "google-auth-library": "^7.0.4",
@@ -18,7 +19,7 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-    "server": "node server.js",
+    "server": "env-cmd -f .env.development.local node server.js",
     "start": "react-scripts start",
     "dev": "concurrently \"npm run server\" \"npm run start\"",
     "build": "react-scripts build",
