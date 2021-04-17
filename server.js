@@ -17,7 +17,7 @@ const mongodb_client = new MongoClient(mongodb_uri, { useNewUrlParser: true, use
 // console.log that your server is up and running
 app.listen(port, () => console.log(`Listening on port ${port}`));
 app.use(express.json())
-app.use(session({ resave: true, secret: '123456', saveUninitialized: true}));
+app.use(session({ resave: true, secret: '123456', saveUninitialized: true }));
 
 app.post("/api/v1/auth/google", async (req, res) => {    
   const { token }  = req.body    
@@ -38,7 +38,9 @@ app.post("/api/v1/auth/google", async (req, res) => {
     const options = { upsert: true };
     dbo.collection(mongodb_database_collection).updateOne(query, update, options);
     req.session.email = user.email
-    res.json(user)
+
+    const message = { userData: user, message: "Loged in successfully" }
+    res.json(message)
     res.status(201)
   });
 })
